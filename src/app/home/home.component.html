@@ -1,7 +1,21 @@
 <h3>Employee Form</h3>
+<div class="container">
+  <form>
+
+
+
+  </form>
+
+</div>
+
+
+
+<!-- Used prior to installing ng2-bootstrap to control forms display.
+
 <h3 *ngIf="languages.length == 0">Loading...</h3>
 <div class="container" *ngIf="languages.length > 0">
 <form #form="ngForm" (submit)="submitForm(form)" novalidate>
+
 
   <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
     <label for="firstNameID" class="control-label">First Name: </label>
@@ -59,12 +73,12 @@
         </option>
       </select>
     </div>
-<!--
+
     <div class="form-group">
       <label for="datehired">Date Hired: </label>
       <input id="datehired" type="date" class="form-control">
     </div>
-  -->
+
     <button class="btn-primary" type="submit"
     [disabled]="form.invalid">Submit</button>
 
@@ -73,5 +87,6 @@
   Model: {{ model | json }}
   <br>
 
-</div>
 
+</div>
+-->
