@@ -1,11 +1,79 @@
 <h3>Employee Form</h3>
 <div class="container">
   <form>
+    <h3 *ngIf="languages.length == 0">Loading...</h3>
+    <div class="container" *ngIf="languages.length > 0">
 
 
+      <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
+        <label for="firstNameID" class="control-label">First Name: </label>
+        <input #firstName="ngModel" required id="firstNameID" type="text" class="form-control"
+               placeholder="First Name" name="firstName" [(ngModel)]="model.firstName">
+        <div *ngIf="firstName.invalid && firstName.touched"
+             class="alert alert-danger" role="alert">
+          First Name is required
+        </div>
+      </div>
+
+
+      <div class="form-group" [class.has-error]="lastName.invalid && lastName.touched">
+        <label for="lastNameID" class="control-label">Last Name: </label>
+        <input #lastName="ngModel" required id="lastNameID" type="text" class="form-control"
+               placeholder="Last Name" name="lastName" [(ngModel)]="model.lastName">
+        <div *ngIf="lastName.invalid && lastName.touched"
+             class="aler aler-danger" role="aler">
+          Last Name is required
+        </div>
+      </div>
+
+      <div class="form-group" style="display: inline-block">
+        <label>Select Employee Start Date: </label>
+        <datepicker name="startDate" [(ngModel)]="startDate"
+        [showWeeks]="false"
+        ></datepicker>
+      </div>
+
+      <div class="for-group">
+        <label>Select Employee's Full Time Status: </label>
+        <button type="button"
+                [class.btn-primary]="fullTimeStatus === 'Full-Time'"
+                [class.btn-info]="fullTimeStatus === 'Contract/Part-Time'"
+                name="fullTimeStatus"
+                [(ngModel)]="fullTimeStatus" btnCheckbox
+                btnCheckboxTrue="Full-Time" btnCheckboxFalse="Contract/Part-Time">
+          {{ fullTimeStatus}}
+        </button>
+      </div>
+
+      <div>
+        <label>Employee Pay Type: </label>
+        <div class="btn-group">
+          <label class="btn btn-primary"
+                 name="taxType" [(ngModel)]="taxType" btnRadio="W2">W2
+          </label>
+          <label class="btn btn-primary"
+                 name="taxType" [(ngModel)]="taxType" btnRadio="1099">1099
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
+      <label class="control-label" for="primaryLanguage">Primary Language: </label>
+      <select id="primaryLanguage" class="form-control"
+              #primaryLanguage name="primaryLanguage"
+              (blur)="validatePrimaryLanguage(primaryLanguage.value)"
+              (change)="validatePrimaryLanguage(primaryLanguage.value)"
+              [(ngModel)]="model.primaryLanguage" >
+        <option value="default" selected>Select a Language...</option>
+        <option *ngFor="let lang of languages">
+          {{ lang }}
+        </option>
+      </select>
+    </div>
 
   </form>
-
+<h3>{{startDate}}</h3>
 </div>
 
 

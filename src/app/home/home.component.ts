@@ -12,6 +12,9 @@ export class HomeComponent {
   languages = [];
   model = new Employee('Darla', 'Smith', true, 'w2', 'default');
   hasPrimaryLanguageError = false;
+  startDate: Date;
+  fullTimeStatus = "Full-Time";
+  taxType = 'W2';
 
   constructor (private formPoster: FormPoster) {
     this.formPoster.getLanguages()
