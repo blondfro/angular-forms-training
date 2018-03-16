@@ -1,19 +1,26 @@
 <h3>Employee Form</h3>
 <div class="container">
-<form #form="ngForm" novalidate>
+<form #form="ngForm" (submit)="submitForm(form)" novalidate>
+
   <div class="form-group" [class.has-error]="firstName.invalid && firstName.touched">
     <label for="firstNameID" class="control-label">First Name: </label>
-    <input #firstName="ngModel" pattern="...+" required id="firstNameID" type="text" class="form-control"
+    <input #firstName="ngModel" required id="firstNameID" type="text" class="form-control"
            placeholder="First Name" name="firstName" [(ngModel)]="model.firstName">
-    <div *ngIf="firstName.invalid && firstName.touched" class="alert alert-danger" role="alert">First Name is required</div>
+    <div *ngIf="firstName.invalid && firstName.touched"
+         class="alert alert-danger" role="alert">
+      First Name is required
+    </div>
   </div>
 
 
-  <!--
-    <div class="form-group">
-      <label for="lastNameID">First Name: </label>
-      <input id="lastNameID" type="text" class="form-control" placeholder="Last Name"
-             name="lastName" [(ngModel)]="model.lastName">
+    <div class="form-group" [class.has-error]="lastName.invalid && lastName.touched">
+      <label for="lastNameID" class="control-label">Last Name: </label>
+      <input #lastName="ngModel" required id="lastNameID" type="text" class="form-control"
+             placeholder="Last Name" name="lastName" [(ngModel)]="model.lastName">
+      <div *ngIf="lastName.invalid && lastName.touched"
+           class="aler aler-danger" role="aler">
+        Last Name is required
+      </div>
     </div>
 
     <div class="checkbox">
@@ -37,7 +44,7 @@
                [(ngModel)]="model.paymentType"> 1099
       </label>
     </div>
-    -->
+
     <div class="form-group" [class.has-error]="hasPrimaryLanguageError">
       <label class="control-label" for="primaryLanguage">Primary Language: </label>
       <select id="primaryLanguage" class="form-control"
