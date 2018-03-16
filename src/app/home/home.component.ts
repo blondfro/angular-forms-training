@@ -8,7 +8,16 @@ import {Employee} from "../models/employee.model";
 })
 export class HomeComponent {
   languages = ['English', 'Spanish', 'French', 'Other'];
-  model = new Employee('Darla', 'Smith', true, 'w2', 'English');
+  model = new Employee('Darla', 'Smith', true, 'w2', 'default');
+  hasPrimaryLanguageError = false;
+
+  validatePrimaryLanguage(value) {
+    if (value === 'default')
+      this.hasPrimaryLanguageError = true;
+    else
+      this.hasPrimaryLanguageError = false;
+    console.log('lang: ' + this.model.primaryLanguage);
+  }
 
 
   // This function can be used to make the first letter of a string into a capital letter.
